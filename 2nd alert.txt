@@ -1,0 +1,154 @@
+important==>>
+
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+  <?php require_once('index.php'); ?> 
+
+php+javascript==>>
+
+
+  <script>
+    function alertWarning(){
+      $(document).ready(function(){
+          $('.alert-warning').addClass("show");
+          $('.alert-warning').removeClass("hide");
+          $('.alert-warning').addClass("showAlert");
+          setTimeout(function(){
+            $('.alert-warning').removeClass("show");
+            $('.alert-warning').addClass("hide");
+          },5000);
+      });
+  
+      }
+    function alertSuccess(){
+      $(document).ready(function(){
+          $('.alert-success').removeClass("hide");
+          $('.alert-success').addClass("showAlert");
+             $('.alert-success').addClass("show");
+          setTimeout(function(){
+            $('.alert-success').removeClass("show");
+            $('.alert-success').addClass("hide");
+          },5000);
+      });
+  
+      }
+  </script>
+
+
+<?php
+if(isset($_POST["send"])){
+  $FName="First Name : ".$_POST["fname"]."\n";
+  $Subject= " Subject : Testing"."\n";
+  $Email=" User Email : ".$_POST["email"]."\n";
+  $Message=" User Message : ".$_POST["message"];
+
+
+  $from = "hannanazam200@gmail.com";
+  
+  $Message = $FName .' '.$Subject.' '.$Email.''.$Message;
+  
+  $to = "hannanazam200@gmail.com";
+  $headers = "From:" . $from;
+    
+    if($FName !="" && $Subject !="" && $Email !="" && $Message !="")
+    {
+        if(mail($to,$Subject,$Message,$headers))
+  {
+    
+    echo '<script type="text/javascript">alertSuccess() </script>';
+      
+     
+   
+  }
+  else
+  { 
+      echo '<script type="text/javascript">alertWarning() </script>';
+  
+  }
+}
+  }
+?>
+
+
+
+html==>
+
+<!-- alerts  -->
+
+    <div class="alertsss">
+
+    <div class="alert hide alert-success alert-dismissible fade show" role="alert">
+    <i class="fas fa-check-circle"></i>
+  <strong>Congratulation!</strong> Your message has been submitted we will contact you soon.
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+
+    <div class="alert hide alert-warning alert-dismissible fade show" role="alert">
+    <i class="fas fa-exclamation-circle"></i>
+  <strong>Oops!</strong> Message not send poor connection.
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+    
+
+</div>
+
+<!-- alerts  -->
+
+
+
+
+
+
+
+
+
+javascript==>>
+
+<script>
+  let input1 = document.querySelector("#exampleFormControlInput1");
+  let input2 = document.querySelector("#exampleFormControlInput2");
+  let input3 = document.querySelector("#exampleFormControlTextarea1");
+let button = document.querySelector("#sendbutton");
+
+button.disabled = true;
+
+input1.addEventListener("change", stateHandle);
+input2.addEventListener("change", stateHandle);
+input3.addEventListener("change", stateHandle);
+
+function stateHandle() {
+	if (document.querySelector("#exampleFormControlInput1").value === "" || document.querySelector("#exampleFormControlInput2").value === "" || document.querySelector("#exampleFormControlTextarea1").value === "") {
+		button.disabled = true;
+	} else {
+		button.disabled = false;
+	}
+}
+
+</script>
+
+
+
+css == >>
+
+.alertsss .alert{
+    position: fixed !important;
+    width: 50% !important;
+    top: 100px !important;
+    right: 0px !important;
+    opacity: 0;
+    text-align: center;
+}
+.alertsss .alert.showAlert{
+    opacity: 1;
+    pointer-events: auto;
+}
+
+
+
+
+
+
+
+
+
+
+
